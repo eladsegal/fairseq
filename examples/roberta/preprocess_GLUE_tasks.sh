@@ -72,6 +72,12 @@ do
     TEST_INPUT_COLUMNS=( 1 2 )
     LABEL_COLUMN=3
   # Following are single sentence tasks.
+  elif [ "$TASK" = "NC-BoolQ" ]
+  then
+    INPUT_COLUMNS=( 2 )
+    TEST_INPUT_COLUMNS=( 2 )
+    LABEL_COLUMN=3
+    INPUT_COUNT=1
   elif [ "$TASK" = "SST-2" ]
   then
     INPUT_COLUMNS=( 1 )
