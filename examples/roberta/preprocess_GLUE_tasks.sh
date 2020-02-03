@@ -175,14 +175,25 @@ do
   for INPUT_TYPE in $(seq 0 $((INPUT_COUNT-1)))
   do
     LANG="input$INPUT_TYPE"
-    fairseq-preprocess \
-      --only-source \
-      --trainpref "$TASK_DATA_FOLDER/processed/train.$LANG" \
-      --validpref "${DEVPREF//LANG/$LANG}" \
-      --testpref "${TESTPREF//LANG/$LANG}" \
-      --destdir "$TASK-bin/$LANG" \
-      --workers 60 \
-      --srcdict dict.txt;
+    if [[ "$TASK" !=  "nicks" ]]
+    then
+      fairseq-preprocess \
+        --only-source \
+        --trainpref "$TASK_DATA_FOLDER/processed/train.$LANG" \
+        --validpref "${DEVPREF//LANG/$LANG}" \
+        --testpref "${TESTPREF//LANG/$LANG}" \
+        --destdir "$TASK-bin/$LANG" \
+        --workers 60 \
+        --srcdict dict.txt;
+    else
+      fairseq-preprocess \
+        --only-source \
+        --trainpref "$TASK_DATA_FOLDER/processed/train.$LANG" \
+        --validpref "${DEVPREF//LANG/$LANG}" \
+        --destdir "$TASK-bin/$LANG" \
+        --workers 60 \
+        --srcdict dict.txt;
+    fi
   done
   if [[ "$TASK" !=  "STS-B" ]]
   then
