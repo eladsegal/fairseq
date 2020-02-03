@@ -80,8 +80,8 @@ do
     INPUT_COUNT=1
   elif [ "$TASK" = "nicks" ]
   then
+    SPLITS="train dev train_subject dev_subject"
     INPUT_COLUMNS=( 1 )
-    TEST_INPUT_COLUMNS=( 1 )
     LABEL_COLUMN=2
     INPUT_COUNT=1
   elif [ "$TASK" = "SST-2" ]
