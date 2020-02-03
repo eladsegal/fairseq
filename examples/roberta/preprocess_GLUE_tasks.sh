@@ -78,9 +78,9 @@ do
     TEST_INPUT_COLUMNS=( 2 )
     LABEL_COLUMN=3
     INPUT_COUNT=1
-  elif [ "$TASK" = "nicks" ]
+  elif [ "$TASK" = "nicks" || "$TASK" = "nicks_subject" ]
   then
-    SPLITS="train dev train_subject dev_subject"
+    SPLITS="train dev"
     INPUT_COLUMNS=( 1 )
     LABEL_COLUMN=2
     INPUT_COUNT=1
@@ -175,7 +175,7 @@ do
   for INPUT_TYPE in $(seq 0 $((INPUT_COUNT-1)))
   do
     LANG="input$INPUT_TYPE"
-    if [[ "$TASK" !=  "nicks" ]]
+    if [[ "$TASK" !=  "nicks" && "$TASK" !=  "nicks_subject" ]]
     then
       fairseq-preprocess \
         --only-source \
